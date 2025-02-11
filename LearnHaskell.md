@@ -536,6 +536,90 @@ sum' = foldl (+) 0
 
  ### Charger des modules
 
+ Un module Haskell est une collection de fonctions,
+
+ module Prelude  qui est importé par défaut.
+
+ import ```<module name>```
+
+```hs
+import Data.List
+import Data.List (nub, sort) --selection
+import Data.List hiding (nub) --exclusion
+
+numUniques :: (Eq a) => [a] -> Int
+numUniques = length . nub
+```
+
+```hs
+import qualified Data.Map
+
+Data.Map.filter
+```
+
+```hs
+import qualified Data.Map as M
+
+M.filter
+```
+
+
+
+[Explorer les modules](https://downloads.haskell.org/ghc/latest/docs/libraries/)
+
+[Pour trouver des fonctions et savoir dans quel module elles résident](https://hoogle.haskell.org/)
+
+### Data.List
+### Data.Char
+### Data.Map
+
+
+```hs
+findKey :: (Eq k) => k -> [(k,v)] -> Maybe v
+findKey key [] = Nothing
+findKey key ((k,v):xs) = if key == k
+                            then Just v
+                            else findKey key xs
+```
+
+### Data.Set
+
+### Creer nos propres modules 
+
+```hs
+module Geometry
+( sphereVolume
+, sphereArea
+, cubeVolume
+, cubeArea
+, cuboidArea
+, cuboidVolume
+) where
+
+sphereVolume :: Float -> Float
+sphereVolume radius = (4.0 / 3.0) * pi * (radius ^ 3)
+
+sphereArea :: Float -> Float
+sphereArea radius = 4 * pi * (radius ^ 2)
+
+cubeVolume :: Float -> Float
+cubeVolume side = cuboidVolume side side side
+
+cubeArea :: Float -> Float
+cubeArea side = cuboidArea side side side
+
+cuboidVolume :: Float -> Float -> Float -> Float
+cuboidVolume a b c = rectangleArea a b * c
+
+cuboidArea :: Float -> Float -> Float -> Float
+cuboidArea a b c = rectangleArea a b * 2 + rectangleArea a c * 2 + rectangleArea c b * 2
+
+rectangleArea :: Float -> Float -> Float
+rectangleArea a b = a * b
+```
+
+Aussi la possiblité de creer un dossier avec edes sous modules
+
 
 
  
