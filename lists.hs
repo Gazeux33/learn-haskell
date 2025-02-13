@@ -20,9 +20,11 @@ main = do
 
   --putStrLn $ show $ zip1 l  $ reverse1 l
 
-  putStrLn $ show $ length1 l
-  putStrLn $ show $ length2 l
-  putStrLn $ show $ length3 l
+  --putStrLn $ show $ length1 l
+  --putStrLn $ show $ length2 l
+  --putStrLn $ show $ length3 l
+
+  putStrLn $ show $ take1 2 l  
 
 
 
@@ -81,7 +83,7 @@ zip1 _ [] = []
 zip1 [] _ = []
 zip1 (x:xs) (y:ys) = (x,y):zip1 xs ys 
 
---length :: [a] -> Int** : Renvoie la longueur d'une liste.
+--length :: [a] -> Int : Renvoie la longueur d'une liste.
 length1 :: [a] -> Int
 length1 [] = 0
 length1 (x:xs) = 1 + length1 xs
@@ -93,11 +95,14 @@ length3 :: [a] -> Int
 length3 xs = sum [1 | _ <- xs]
 
 
---take :: Int -> [a] -> [a]** : Prend les n premiers éléments d'une liste.
+--take :: Int -> [a] -> [a] : Prend les n premiers éléments d'une liste.
+take1 :: Int -> [a] -> [a]
+take1 0 _ = []
+take1 n (x:xs) = x : take1 (n-1) xs
 
 
 
---drop :: Int -> [a] -> [a]** : Supprime les n premiers éléments d'une liste.
+--drop :: Int -> [a] -> [a] : Supprime les n premiers éléments d'une liste.
 
 
 
