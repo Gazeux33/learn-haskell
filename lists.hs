@@ -24,7 +24,9 @@ main = do
   --putStrLn $ show $ length2 l
   --putStrLn $ show $ length3 l
 
-  putStrLn $ show $ take1 2 l  
+  --putStrLn $ show $ take1 2 l  
+
+  putStrLn $ show $ drop1 2 l 
 
 
 
@@ -105,7 +107,8 @@ take1 n (x:xs) = x : take1 (n-1) xs
 --drop :: Int -> [a] -> [a] : Supprime les n premiers éléments d'une liste.
 
 
-
+drop1 :: Int -> [a] -> [a]
+drop1 n l@(x:xs) = if n > 0 then drop1 (n-1) xs else l
 
 
 
