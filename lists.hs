@@ -111,4 +111,9 @@ drop1 :: Int -> [a] -> [a]
 drop1 n l@(x:xs) = if n > 0 then drop1 (n-1) xs else l
 
 
+-- unzip :: [(a, b)] -> ([a], [b])
 
+unzip1 :: [(a, b)] -> ([a], [b])
+unzip1 [] = ([], [])
+unzip1 ((a,b):xs) = (a:as, b:bs)
+  where (as, bs) = unzip1 xs
