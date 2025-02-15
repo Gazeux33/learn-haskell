@@ -26,7 +26,9 @@ main = do
 
   --putStrLn $ show $ take1 2 l  
 
-  putStrLn $ show $ drop1 2 l 
+  --putStrLn $ show $ drop1 2 l 
+
+  putStrLn $ show $ unzip1 $ zip1 l l
 
 
 
@@ -117,3 +119,6 @@ unzip1 :: [(a, b)] -> ([a], [b])
 unzip1 [] = ([], [])
 unzip1 ((a,b):xs) = (a:as, b:bs)
   where (as, bs) = unzip1 xs
+
+
+

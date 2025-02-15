@@ -620,6 +620,98 @@ rectangleArea a b = a * b
 
 Aussi la possiblité de creer un dossier avec edes sous modules
 
+## Créer nos propres types et classes de types
 
 
+### Introduction aux types de données algébriques
+
+```hs
+data Bool = False | True
+data Int = -2147483648 | -2147483647 | ... | -1 | 0 | 1 | 2 | ... | 2147483647
+```
+
+```hs
+data Shape = Circle Float Float Float | Rectangle Float Float Float Float
+```
+
+```hs
+surface :: Shape -> Float
+surface (Circle _ _ r) = pi * r ^ 2
+surface (Rectangle x1 y1 x2 y2) = (abs $ x2 - x1) * (abs $ y2 - y1)
+```
+
+Circle n'est pas un type , Shape en est un
+
+```hs
+surface $ Circle 10 20 10
+surface $ Rectangle 0 0 100 100
+```
+
+```hs
+data Shape = Circle Float Float Float | Rectangle Float Float Float Float deriving (Show)
+```
+
+
+```hs
+data Point = Point Float Float deriving (Show)
+data Shape = Circle Point Float | Rectangle Point Point deriving (Show)
+```
+Remarquez qu’en définissant un point, on a utilisé le même nom pour le type de données et pour le constructeur de valeurs
+
+```hs
+surface :: Shape -> Float
+surface (Circle _ r) = pi * r ^ 2
+surface (Rectangle (Point x1 y1) (Point x2 y2)) = (abs $ x2 - x1) * (abs $ y2 - y1)
+```
+
+```hs
+module Shapes
+( Point(..)
+, Shape(..)
+, surface
+, nudge
+, baseCircle
+, baseRect
+) where
+```
+
+### Syntaxe des enregistrements
+
+```hs
+data Person = Person String String Int Float String String deriving (Show)
+
+firstName :: Person -> String
+firstName (Person firstname _ _ _ _ _) = firstname
+
+lastName :: Person -> String
+lastName (Person _ lastname _ _ _ _) = lastname
+
+age :: Person -> Int
+age (Person _ _ age _ _ _) = age
+
+height :: Person -> Float
+height (Person _ _ _ height _ _) = height
+
+phoneNumber :: Person -> String
+phoneNumber (Person _ _ _ _ number _) = number
+
+flavor :: Person -> String
+flavor (Person _ _ _ _ _ flavor) = flavor
+```
+
+```hs
+data Person = Person { firstName :: String
+                     , lastName :: String
+                     , age :: Int
+                     , height :: Float
+                     , phoneNumber :: String
+                     , flavor :: String
+                     } deriving (Show)
+```
+
+```hs
+data Car = Car {company :: String, model :: String, year :: Int} deriving (Show)
+Car {company="Ford", model="Mustang", year=1967}
+```
  
+ ### Paramètres de types@&ze  -$`)m=('§è)
