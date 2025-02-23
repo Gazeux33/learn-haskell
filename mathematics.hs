@@ -6,8 +6,13 @@ main = do
   putStrLn $ "Start";
    -- putStrLn $ show $ factorial1 x
 
-   putStrLn $ show $ product1 [1,2,3,4];
-   putStrLn $ show $ product2 [1,2,3,4]
+   --putStrLn $ show $ product1 [1,2,3,4];
+   --putStrLn $ show $ product2 [1,2,3,4];
+
+   --putStrLn $ show $ sum1 [1,2,3,4];
+   --putStrLn $ show $ sum2 [1,2,3,4]
+
+
 
 
 
@@ -36,6 +41,16 @@ factorial1 x = x * factorial1 (x - 1)
 --isPrime :: Int -> Bool : Vérifie si un nombre est premier.
 
 --sum :: Num a => [a] -> a : Somme d'une liste.
+
+sum1 :: Num a => [a] -> a
+sum1 [] = 0
+sum1 (x:xs) = x + sum1 xs
+
+sum2 :: Num a => [a] -> a
+sum2 = foldr1 (+)
+
+
+
 
 --product :: Num a => [a] -> a : Produit d'une liste.
 
